@@ -12,12 +12,26 @@
 
 #include "fillit.h"
 
+int		ft_char_validity(char *str)
+{
+	int str_len;
+	int i;
+
+	i = 0;
+	while (str[i] != '\n' && str[i])
+	{
+		if (str[i] != '#' || str[i] != '.')
+			return (0);
+		i++;
+	}
+	return ((str[i]) ? 1 : 0);
+}
 int main(int  ac, char **av)
 {
 	int fd1, fd2;
 	int r1, r2;
 	int i = 0;
-	int flag = 0;
+	int flag = 1;
 	char *line;
 	char buff1[5];
 	char buff2[5];
@@ -34,15 +48,27 @@ int main(int  ac, char **av)
 		}
 		//free(line);		*/
 
+		// comparaison between input testfile 
+		//	and a valid tetro
+		//
 		while ((r1 = read(fd1, buff1, 4)) && (r2 = read(fd2, buff2, 4)) && i < 5)
 		{
 			buff1[r1] = '\0';
 			buff2[r2] = '\0';
+			
 			if(ft_strcmp(buff1, buff2) != 0)
-				flag  = 1;
+				flag  = 0;
 			i++;
 		}
-		if (flag  == 0)
+		// verification of '#' and '.'
+		//
+		/*while ((r1 = read(fd1, buff1, 4)))
+		{
+			buff1[r1] = '\0';
+			if (!ft_char_validity(buff1))
+				flag = 3;
+		}*/
+		if (flag)
 			printf("Is a Titro\n");
 		else
 			printf("Is not a Titro\n");
