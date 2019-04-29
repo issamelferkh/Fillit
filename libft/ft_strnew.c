@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 07:16:52 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/03/29 22:08:04 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:08:28 by cjamal            #+#    #+#             */
+/*   Updated: 2019/03/30 09:08:29 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 char	*ft_strnew(size_t size)
 {
-	char	*str;
+	char	*new;
+	size_t	i;
 
-	str = (char *)malloc(sizeof(char) * (size + 1));
-	if (str == NULL)
-		return (NULL);
-	return (ft_memset(str, 0, size + 1));
+	if ((new = (char*)malloc(sizeof(*new) * (int)size + 1)))
+	{
+		i = -1;
+		while (++i < size + 1)
+			*new++ = 0;
+		return (new - size - 1);
+	}
+	return (NULL);
 }

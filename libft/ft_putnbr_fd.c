@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 06:43:44 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/03/28 15:42:44 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:06:04 by cjamal            #+#    #+#             */
+/*   Updated: 2019/04/02 12:41:33 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	if (fd == -1)
-		return ;
-	if (nb == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
-	else if (nb < 0)
+	if (nb < 0)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-nb, fd);
-	}
-	else if (nb > 9)
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
+		if (nb < -9)
+			ft_putnbr_fd(nb / 10, fd);
+		else
+			ft_putchar_fd('-', fd);
+		ft_putchar_fd(-(nb % 10) + '0', fd);
 	}
 	else
-		ft_putchar_fd(nb + 48, fd);
+	{
+		if (nb > 9)
+			ft_putnbr_fd(nb / 10, fd);
+		ft_putchar_fd((nb % 10) + '0', fd);
+	}
 }
