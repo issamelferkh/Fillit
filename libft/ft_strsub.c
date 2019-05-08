@@ -3,30 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 07:27:09 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/04/02 16:24:19 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:09:05 by cjamal            #+#    #+#             */
+/*   Updated: 2019/04/02 12:53:58 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(const char *s, unsigned int start, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	index;
+	char	*tronc;
+	int		len_cpy;
 
-	index = 0;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!s || !str)
-		return (NULL);
-	while (index < len)
+	tronc = ft_strnew(len);
+	len_cpy = len;
+	if (s)
 	{
-		str[index] = s[start];
-		index++;
-		start++;
+		if (tronc)
+		{
+			while (len_cpy--)
+			{
+				*tronc++ = *(s + start);
+				s++;
+			}
+			return (tronc - len);
+		}
 	}
-	str[index] = 0;
-	return (str);
+	return (NULL);
 }

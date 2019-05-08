@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 22:44:22 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/04/07 21:49:24 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:04:35 by cjamal            #+#    #+#             */
+/*   Updated: 2019/04/02 12:41:47 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list	*new;
-	void	*temp;
+	t_list	*node;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	if (content == NULL)
+	node = (t_list*)malloc(sizeof(t_list));
+	if (node)
 	{
-		new->content = NULL;
-		new->content_size = 0;
+		if (!(content))
+		{
+			node->content = NULL;
+			node->content_size = 0;
+		}
+		else
+		{
+			node->content = malloc(sizeof(*(node->content)) * content_size);
+			if (!(node->content))
+				return (NULL);
+			node->content = ft_memcpy(node->content, content, content_size);
+			node->content_size = content_size;
+		}
+		node->next = NULL;
+		return (node);
 	}
-	else
-	{
-		temp = malloc(content_size);
-		temp = ft_memmove(temp, content, content_size);
-		new->content = temp;
-		new->content_size = content_size;
-	}
-	new->next = NULL;
-	return (new);
+	return (NULL);
 }

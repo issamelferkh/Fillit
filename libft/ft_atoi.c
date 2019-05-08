@@ -3,39 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 01:13:00 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/04/01 18:13:20 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:02:19 by cjamal            #+#    #+#             */
+/*   Updated: 2019/04/07 21:36:50 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int		i;
-	int		sig;
-	int		r;
+	int		sign;
+	long	nb;
 
-	r = 0;
-	i = 0;
-	sig = 1;
-	while (str[i] && ft_isspace(str[i]))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sig = -1;
-		i++;
-	}
-	while (str[i])
-	{
-		if (str[i] >= 48 && str[i] <= 57)
-			r = (r * 10) + (str[i] - 48);
-		else
-			break ;
-		i++;
-	}
-	return (r * sig);
+	sign = 1;
+	if (!(*str >= 0 && *str <= 127))
+		return (0);
+	while (*str <= 32 && *str != 27 && *str)
+		str++;
+	(((*str == '-' || *str == '+') && (*str++ == '-')) ? (sign = -1) : 1);
+	nb = 0;
+	while (*str >= '0' && *str <= '9')
+		if ((nb = 10 * nb + (*str++ - 48)) < 0)
+			return ((sign == 1 ? -1 : 0));
+	return (nb * sign);
 }

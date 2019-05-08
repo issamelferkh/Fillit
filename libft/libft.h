@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # define BUFF_SIZE 9999
-
+# define TETRO_SIZE 20
 typedef struct		s_list
 {
 	void			*content;

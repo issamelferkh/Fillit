@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 07:39:44 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/03/27 07:40:25 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/03/30 09:04:28 by cjamal            #+#    #+#             */
+/*   Updated: 2019/04/02 12:22:47 by cjamal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*cur;
-	t_list	*temp;
-	t_list	*head;
+	t_list	*tmp;
+	t_list	*first;
 
 	if (!lst || !f)
 		return (NULL);
-	temp = f(lst);
-	if (!(cur = ft_lstnew(temp->content, temp->content_size)))
-		return (NULL);
-	head = cur;
-	lst = lst->next;
-	while (lst)
+	tmp = f(lst);
+	first = tmp;
+	while ((lst = lst->next))
 	{
-		temp = f(lst);
-		if (!(cur->next = ft_lstnew(temp->content, temp->content_size)))
+		if (tmp != NULL)
+		{
+			tmp->next = f(lst);
+			tmp = tmp->next;
+		}
+		else
 			return (NULL);
-		cur = cur->next;
-		lst = lst->next;
 	}
-	return (head);
+	return (first);
 }
