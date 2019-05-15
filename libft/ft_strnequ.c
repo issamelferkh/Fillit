@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 09:08:21 by cjamal            #+#    #+#             */
-/*   Updated: 2019/04/02 12:49:27 by cjamal           ###   ########.fr       */
+/*   Created: 2019/03/27 07:26:01 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/03/27 07:26:37 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strnequ(char const *s1, char const *s2, size_t n)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
+	size_t i;
+
+	i = 0;
+	if (!n)
+		return (1);
 	if (s1 && s2)
-		if (!ft_strncmp(s1, s2, n))
-			return (1);
+	{
+		while (s1[i] == s2[i] && s1[i] && i < n - 1)
+			i++;
+		return (s1[i] == s2[i]);
+	}
 	return (0);
 }

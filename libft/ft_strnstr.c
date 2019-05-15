@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 09:08:35 by cjamal            #+#    #+#             */
-/*   Updated: 2019/04/09 13:56:03 by cjamal           ###   ########.fr       */
+/*   Created: 2019/03/27 06:59:55 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/03/28 21:33:26 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+char		*ft_strnstr(const char *h, const char *n, size_t len)
 {
-	size_t size;
+	size_t	i;
 
-	size = ft_strlen((char*)to_find);
-	if (!size)
-		return ((char*)str);
-	while (*str && len)
+	if (!*n)
+		return ((char *)h);
+	while (*h && len > 0)
 	{
-		if (*str == *to_find)
-		{
-			if (ft_strnequ(str, to_find, size) && size <= len)
-				return ((char*)str);
-		}
-		str++;
+		i = 0;
+		while (h[i] == n[i] && n[i] && len > i)
+			i++;
+		if (!n[i])
+			return ((char *)h);
+		h++;
 		len--;
 	}
-	return (NULL);
+	return (0);
 }

@@ -1,28 +1,34 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/04/02 20:35:07 by iel-ferk          #+#    #+#              #
+#    Updated: 2019/04/04 23:17:30 by iel-ferk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
-SRC = $(wildcard *.c)
+SRC = *.c
 
-FLAGS = -Wall -Wextra -Werror
+OBJS = *.o
 
-CC = gcc $(FLAGS)
+CC = gcc -Wall -Wextra -Werror
 
-OBJ = $(patsubst %.c,%.o,$(SRC))
+all: $(NAME)
 
-LIB = ar rc $(NAME) $(OBJ)
-
-all : $(NAME)
-
-%.o : %.c 
-	$(CC) -o $@ -c $<
-
-$(NAME) : $(OBJ)
-	$(LIB)
+$(NAME):
+	$(CC) -c $(SRC)
+	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
-clean	: 
-	rm -f *.o
+clean:
+	/bin/rm -rf $(OBJS)
 
-fclean	: clean
-	rm -f $(NAME)
+fclean: clean
+	/bin/rm -rf $(NAME)
 
-re : fclean all
+re: fclean all

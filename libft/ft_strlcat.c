@@ -3,29 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjamal <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 09:07:43 by cjamal            #+#    #+#             */
-/*   Updated: 2019/04/02 12:48:05 by cjamal           ###   ########.fr       */
+/*   Created: 2019/03/27 07:11:21 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/04/03 22:13:50 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	len_dest;
-	int		i_buffer;
-	size_t	len_src;
+	size_t	dst_len;
+	size_t	src_len;
 
-	len_dest = ft_strlen(dest);
-	len_src = ft_strlen((char*)src);
-	if (n <= len_dest)
-		return (len_src + n);
-	i_buffer = n - len_dest;
-	dest += len_dest;
-	while (*src && i_buffer-- > 1)
-		*dest++ = *src++;
-	*dest = '\0';
-	return (len_dest + len_src);
+	dst_len = 0;
+	src_len = ft_strlen(src);
+	while (*dst && size > 0)
+	{
+		dst++;
+		dst_len++;
+		size--;
+	}
+	while (*src && size > 1)
+	{
+		size--;
+		*dst++ = *src++;
+	}
+	if (size == 1 || *src == 0)
+		*dst = 0;
+	return (src_len + dst_len);
 }
