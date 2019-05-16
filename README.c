@@ -1,3 +1,13 @@
+Planning
+--------
+File Validation => 16/05/2019
+	ft_check_block_num	-> ok
+	ft_read 			-> 1337: 20h -> 00h
+
+Vendredi -> Dimanche
+	all fillit
+
+
 check_file.c -> for check validity of an input file.
 main.c -> main + ft_check_file fonction
 fillic.c -> all the code

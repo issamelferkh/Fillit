@@ -15,6 +15,7 @@
 # define BUFF_SIZE_FILLIT 20
 # include <unistd.h> // I think is in libft.h !!!
 # include <stdlib.h> // I think is in libft.h !!!
+# include <stdio.h> // I think is in libft.h !!!
 # include <fcntl.h> // I think is in libft.h !!!
 
 typedef struct	s_point
@@ -24,17 +25,20 @@ typedef struct	s_point
 	int			index;
 }				t_point;
 
+void			ft_check_file(char *av, int *block_num); // void error(char *av, int *rcount)
+int				ft_check_block_num(int fd, int *block_num); // int ft_max_min(int fd, int *rcount);
+int				ft_check_block_valid(int fd, int *block_num); // int ft_check(int fd, int *count_b);
+int				ft_read(int fd);
+
+
 int				is_safe(char **grid, t_point *tetrisa, int a, int b);
 void			remove_minos(char **grid, t_point *tetrisa);
 void			place_minos(char **grid, t_point *tetrisa, int i, int j);
 char			**create_grid(int dim);
 int				ft_validate_tetris(char **tet, int *pound);
 char			**ft_read_tetriminos(char *buff);
-int				ft_check(int fd, int *count_b);
 char			**ft_read_block(int fd);
 t_point			**ft_coord(int fd, int *rcount);
-int				ft_max_min(int fd, int *rcount);
-int				ft_read(int fd);
 void			ft_check_file(char *av, int *block_num);
 void			print_grid(char	**grid);
 int				recursion(t_point **coord, char **grid, int i, int j);
