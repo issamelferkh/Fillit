@@ -1,65 +1,44 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/14 21:57:33 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/14 21:57:36 by iel-ferk         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft/libft.h"
 #include "fillit.h"
 
-void		ft_check_file(char *av, int *block_num)
+void	ft_check_file(char *av, int *block_num)
 {
-	int		fd;
-	int		check_valid;
+	int fd;
+	int flag;
 
-	check_valid = 0;
-	if ((fd = open(av, O_RDONLY)) == -1 || !ft_max_min(fd, rcount)) // check open + ft_max_min ?
+	flag = 0; // juste for test
+	if ((fd = open(av, O_RDONLY)) == -1 || !ft_check_block_num(fd, block_num))
+	{
+		ft_putstr("Invalid File\n");
+		exit(-1);
+	}
+	else // juste for test
+		flag = 1; 
+	close(fd);
+	
+	if ((fd = open(av, O_RDONLY)) == -1 || !ft_read_valid_tetro(fd)) 
 	{
 		ft_putstr("error\n");
 		exit(-1);
 	}
-	else
-		check_valid++;
+	else // juste for test
+		flag = 1; 
 	close(fd);
-	if ((fd = open(av, O_RDONLY)) == -1 || !ft_read(fd)) // check open + ft_read ?
-	{
-		ft_putstr("error\n");
-		exit(-1);
-	}
-	else
-		check_valid++;
-	close(fd);
-	if (check_valid != 0)
-		ft_putstr("Valide file\n");
+	if (flag) // juste for test
+		ft_putstr("The File Is Valid\n"); // juste for test
 }
 
-int			main(int ac, char **av) // ok
+int main(int ac, char **av)
 {
-	int		fd; // ok
-	int		block_num; // ok
+	int block_num;
 
-	char	**grid; // ?
-	t_point	**coord; // ?
-
-	block_num = 0; // ok
-	if (ac != 2) // ok
+	if (ac != 2)
 	{
 		ft_putstr("usage: ./fillit source_file\n");
-		return (1);
+		return (0);
 	}
-	ft_check_file(av[1], &block_num); // check error ? => 6 ft
-	// fd = open(av[1], O_RDONLY);
-	// coord = ft_coord(fd, &num_block);
-	// close(fd);
-	// fd = open(av[1], O_RDONLY);
-	// grid = create_grid(sqrt_sup(num_block * 4));
-	// fillit_solve(coord, grid, sqrt_sup(num_block * 4));
+	block_num = 0;
+	ft_check_file(av[1], &block_num);
+	
 	return (0);
 }
-

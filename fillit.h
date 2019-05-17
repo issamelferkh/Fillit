@@ -25,18 +25,19 @@ typedef struct	s_point
 	int			index;
 }				t_point;
 
-void			ft_check_file(char *av, int *block_num); // void error(char *av, int *rcount)
+void			ft_check_file(char *av, int *block_num); // void error(char *av, int *rcount);
 int				ft_check_block_num(int fd, int *block_num); // int ft_max_min(int fd, int *rcount);
 int				ft_check_block_valid(int fd, int *block_num); // int ft_check(int fd, int *count_b);
-int				ft_read(int fd);
+int				ft_read_valid_tetro(int fd); //int ft_read(int fd);
+char			**ft_read_tetro(char *buff); // char **ft_read_tetriminos(char *buff);
+int				ft_valid_tetro(char **tetro, int *sharp); // int ft_validate_tetris(char **tet, int *pound);
+
 
 
 int				is_safe(char **grid, t_point *tetrisa, int a, int b);
 void			remove_minos(char **grid, t_point *tetrisa);
 void			place_minos(char **grid, t_point *tetrisa, int i, int j);
 char			**create_grid(int dim);
-int				ft_validate_tetris(char **tet, int *pound);
-char			**ft_read_tetriminos(char *buff);
 char			**ft_read_block(int fd);
 t_point			**ft_coord(int fd, int *rcount);
 void			ft_check_file(char *av, int *block_num);
