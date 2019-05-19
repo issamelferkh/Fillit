@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_file.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/18 00:28:11 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/05/18 00:28:14 by iel-ferk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "fillit.h"
 
@@ -95,11 +107,6 @@ char		**ft_read_tetro(char *buff) // read buff and stock it in **tetro
 		tetro[i][j] = '\0';
 		i++;
 	}
-	printf("%s\n",tetro[0]);
-	printf("%s\n",tetro[1]);
-	printf("%s\n",tetro[2]);
-	printf("%s\n",tetro[3]);
-	printf("%s\n",tetro[4]);
 	return (tetro);
 }
 

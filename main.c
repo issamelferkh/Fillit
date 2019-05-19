@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/18 00:28:41 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/05/18 00:28:44 by iel-ferk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "fillit.h"
 
@@ -10,7 +22,7 @@ void	ft_check_file(char *av, int *block_num)
 	if ((fd = open(av, O_RDONLY)) == -1 || !ft_check_block_num(fd, block_num))
 	{
 		ft_putstr("Invalid File\n");
-		exit(-1);
+		exit(-1); // why -1 && check if au
 	}
 	else // juste for test
 		flag = 1; 
@@ -30,7 +42,10 @@ void	ft_check_file(char *av, int *block_num)
 
 int main(int ac, char **av)
 {
+	int fd;
 	int block_num;
+	char	**grid;
+	t_point	**coord;
 
 	if (ac != 2)
 	{
@@ -39,6 +54,11 @@ int main(int ac, char **av)
 	}
 	block_num = 0;
 	ft_check_file(av[1], &block_num);
-	
+	fd = open(av[1], O_RDONLY);
+	coord = ft_position(fd, &block_num);
+	close(fd);
+	fd = open(av[1], O_RDONLY);
+	grid = create_grid(sqrt_sup(block_num * 4));
+	fillit_solve(coord, grid, sqrt_sup(block_num * 4));
 	return (0);
 }
