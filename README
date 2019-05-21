@@ -1,18 +1,25 @@
+Questions
+---------
+* Why sqrt_sup(block_num * 4) ? for identify dim of **output !!! So can I use other method of this identification ???
+
+
+
 Planning
 --------
-File Validation => 16/05/2019
-	ft_check_block_num	-> ok
-	ft_read 			-> 1337: 20h -> 00h
+* Check_file (File Validation)	=> 15/05/2019 to 16/05/2019 => OK
+* Position (data structure)		=> 17/05/2019 to 19/05/2019 => OK
+* Output (**output manager)		=> 20/05/2019 to 21/05/2019 => OK
+	char	**create_output(int dim) -> OK
+	void	print_output(char **output) -> OK
+	void	free_output(char **output, int dim) -> OK
+	int		ft_dim(int dim) -> OK but question
 
-Vendredi -> Dimanche
-	all fillit
+* Solve 						=> 21/05/2019 to ??/05/2019 => NOK
 
 
-check_file.c -> for check validity of an input file.
-main.c -> main + ft_check_file fonction
-fillic.c -> all the code
-fillit.h -> head
 
+Fonctions
+---------
 void			error(char *av, int *rcount);
 {
 	int				ft_max_min(int fd, int *rcount);

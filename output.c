@@ -1,78 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/18 06:54:10 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/18 06:54:13 by iel-ferk         ###   ########.fr       */
+/*   Created: 2019/05/21 00:22:42 by iel-ferk          #+#    #+#             */
+/*   Updated: 2019/05/21 00:22:45 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-char	**create_grid(int dim)
+char	**create_output(int dim)
 {
-	int		i;
+	int 	i;
 	int		j;
-	char	**grid;
+	char 	**output;
 
 	i = 0;
 	j = 0;
-	if (!(grid = (char**)malloc(sizeof(char*) * dim + 1)))
+	if (!(output = (char **)malloc(sizeof(char *) * dim + 1)))
 		return (NULL);
 	while (i < dim)
 	{
-		if (!(grid[i] = (char*)malloc(sizeof(char) * (dim + 1))))
+		if (!(output[i] = (char *)malloc(sizeof(char) * dim + 1)))
 			return (NULL);
 		j = 0;
 		while (j < dim)
 		{
-			grid[i][j] = '.';
+			output[i][j] = '.';
 			j++;
 		}
-		grid[i][j] = '\0';
+		output[i][j] = '\0';
 		i++;
 	}
-	grid[i] = NULL;
-	return (grid);
+	output[i] = NULL; // wach darouri za3ma ? can I use 0 or \0 ? 
+	return (output);
 }
 
-void	print_grid(char **grid)
+void	print_output(char **output)
 {
 	int		i;
 
 	i = 0;
-	while (grid[i])
+	while (output[i])
 	{
-		ft_putstr(grid[i]);
+		ft_putstr(output[i]);
 		ft_putstr("\n");
 		i++;
 	}
 }
 
-void	free_grid(char **grid, int dim)
+void	free_output(char **output, int dim)
 {
 	int		i;
 
 	i = 0;
 	while (i < dim)
 	{
-		free(grid[i]);
+		free(output[i]);
 		i++;
 	}
-	free(grid);
-	grid = NULL;
+	free(output);
+	output = NULL;
 }
 
-int		sqrt_sup(int n)
+int		ft_dim(int dim)
 {
 	int		i;
 
 	i = 0;
-	while ((i * i) < n)
+	while ((i * i) < dim)
 		i++;
 	return (i);
 }

@@ -44,8 +44,8 @@ int main(int ac, char **av)
 {
 	int fd;
 	int block_num;
-	char	**grid;
-	t_point	**coord;
+	char	**output;
+	t_point	**position;
 
 	if (ac != 2)
 	{
@@ -55,10 +55,10 @@ int main(int ac, char **av)
 	block_num = 0;
 	ft_check_file(av[1], &block_num);
 	fd = open(av[1], O_RDONLY);
-	coord = ft_position(fd, &block_num);
+	position = ft_position(fd, &block_num);
 	close(fd);
 	fd = open(av[1], O_RDONLY);
-	grid = create_grid(sqrt_sup(block_num * 4));
-	fillit_solve(coord, grid, sqrt_sup(block_num * 4));
+	output = create_output(ft_dim(block_num * 4));
+	fillit_solve(position, output, ft_dim(block_num * 4));
 	return (0);
 }
