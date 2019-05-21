@@ -15,6 +15,12 @@ Planning
 	int		ft_dim(int dim) -> OK but question
 
 * Solve 						=> 21/05/2019 to ??/05/2019 => NOK
+int			is_safe(char **output, t_point *tetrisa, int a, int b)
+void		place_minos(char **output, t_point *tetrisa, int i, int j)
+void		remove_minos(char **output, t_point *tetrisa)
+int			recursion(t_point **tetrisa, char **output, int i, int j)
+void		fillit_solve(t_point **position, char **output, int dim)
+
 
 
 

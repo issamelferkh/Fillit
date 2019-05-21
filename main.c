@@ -16,16 +16,12 @@
 void	ft_check_file(char *av, int *block_num)
 {
 	int fd;
-	int flag;
 
-	flag = 0; // juste for test
 	if ((fd = open(av, O_RDONLY)) == -1 || !ft_check_block_num(fd, block_num))
 	{
 		ft_putstr("Invalid File\n");
 		exit(-1); // why -1 && check if au
 	}
-	else // juste for test
-		flag = 1; 
 	close(fd);
 	
 	if ((fd = open(av, O_RDONLY)) == -1 || !ft_read_valid_tetro(fd)) 
@@ -33,11 +29,7 @@ void	ft_check_file(char *av, int *block_num)
 		ft_putstr("error\n");
 		exit(-1);
 	}
-	else // juste for test
-		flag = 1; 
 	close(fd);
-	if (flag) // juste for test
-		ft_putstr("The File Is Valid\n"); // juste for test
 }
 
 int main(int ac, char **av)
@@ -45,7 +37,7 @@ int main(int ac, char **av)
 	int fd;
 	int block_num;
 	char	**output;
-	t_point	**position;
+	t_point	**minos;
 
 	if (ac != 2)
 	{
@@ -55,10 +47,10 @@ int main(int ac, char **av)
 	block_num = 0;
 	ft_check_file(av[1], &block_num);
 	fd = open(av[1], O_RDONLY);
-	position = ft_position(fd, &block_num);
+	minos = ft_position(fd, &block_num);
 	close(fd);
 	fd = open(av[1], O_RDONLY);
 	output = create_output(ft_dim(block_num * 4));
-	fillit_solve(position, output, ft_dim(block_num * 4));
+	fillit_solve(minos, output, ft_dim(block_num * 4));
 	return (0);
 }

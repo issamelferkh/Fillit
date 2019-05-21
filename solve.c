@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-int			is_safe(char **output, t_point *tetrisa, int a, int b)
+int			is_safe(char **output, t_point *minos, int a, int b)
 {
 	int		index;
 	int		dim;
@@ -26,10 +26,10 @@ int			is_safe(char **output, t_point *tetrisa, int a, int b)
 		return (0);
 	while (index < 4)
 	{
-		if ((tetrisa[index].x + b) >= 0 && (tetrisa[index].x + b) < dim
-				&& (tetrisa[index].y + a) < dim)
+		if ((minos[index].x + b) >= 0 && (minos[index].x + b) < dim
+				&& (minos[index].y + a) < dim)
 		{
-			if (output[tetrisa[index].y + a][tetrisa[index].x + b] != '.')
+			if (output[minos[index].y + a][minos[index].x + b] != '.')
 				return (0);
 		}
 		else
@@ -39,21 +39,21 @@ int			is_safe(char **output, t_point *tetrisa, int a, int b)
 	return (1);
 }
 
-void		place_minos(char **output, t_point *tetrisa, int i, int j)
+void		place_minos(char **output, t_point *minos, int i, int j)
 {
 	int		ind;
 
 	ind = 0;
 	while (ind < 4)
 	{
-		output[tetrisa[ind].y + i][tetrisa[ind].x + j] = (tetrisa[0].index + 65);
+		output[minos[ind].y + i][minos[ind].x + j] = (minos[0].index + 65);
 		ind++;
 	}
-	tetrisa[4].x = j;
-	tetrisa[4].y = i;
+	minos[4].x = j;
+	minos[4].y = i;
 }
 
-void	remove_minos(char **output, t_point *tetrisa)
+void		remove_minos(char **output, t_point *minos)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ void	remove_minos(char **output, t_point *tetrisa)
 		j = 0;
 		while (output[i][j])
 		{
-			if (output[i][j] == (tetrisa[0].index + 65))
+			if (output[i][j] == (minos[0].index + 65))
 			{
 				output[i][j] = '.';
 				count++;
@@ -79,21 +79,21 @@ void	remove_minos(char **output, t_point *tetrisa)
 	}
 }
 
-int			recursion(t_point **tetrisa, char **output, int i, int j)
+int			recursion(t_point **minos, char **output, int i, int j)
 {
-	if (!*tetrisa)
+	if (!*minos)
 		return (1);
 	while (output[i])
 	{
 		while (output[i][j])
 		{
-			if (is_safe(output, *tetrisa, i, j) == 1)
+			if (is_safe(output, *minos, i, j) == 1)
 			{
-				place_minos(output, *tetrisa, i, j);
-				if (recursion(tetrisa + 1, output, 0, 0) == 1)
+				place_minos(output, *minos, i, j);
+				if (recursion(minos + 1, output, 0, 0) == 1)
 					return (1);
 				else
-					remove_minos(output, *tetrisa);
+					remove_minos(output, *minos);
 			}
 			j++;
 		}
@@ -103,12 +103,12 @@ int			recursion(t_point **tetrisa, char **output, int i, int j)
 	return (0);
 }
 
-void		fillit_solve(t_point **position, char **output, int dim)
+void		fillit_solve(t_point **minos, char **output, int dim)
 {
 	int		l;
 
 	l = 0;
-	while (!(recursion(position, output, 0, 0)))
+	while (!(recursion(minos, output, 0, 0)))
 	{
 		free_output(output, dim);
 		l++;
