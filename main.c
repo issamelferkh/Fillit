@@ -10,8 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
 
 void	ft_check_file(char *av, int *block_num)
 {
@@ -19,7 +35,7 @@ void	ft_check_file(char *av, int *block_num)
 
 	if ((fd = open(av, O_RDONLY)) == -1 || !ft_check_block_num(fd, block_num))
 	{
-		ft_putstr("Invalid File\n");
+		ft_putstr("error\n");
 		exit(-1); // why -1 && check if au
 	}
 	close(fd);
@@ -51,6 +67,6 @@ int main(int ac, char **av)
 	close(fd);
 	fd = open(av[1], O_RDONLY);
 	output = create_output(ft_dim(block_num * 4));
-	fillit_solve(minos, output, ft_dim(block_num * 4));
+	fillit_solve(output, minos, ft_dim(block_num * 4));
 	return (0);
 }

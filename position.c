@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 char		**ft_read_block(int fd)
 {
 	int		i[3];
-	char	buff[BUFF_SIZE_FILLIT];
+	char	buff[BUFF_SIZE];
 	char	**block;
 
 	block = (char**)malloc(sizeof(char*) * 5);
 	block[4] = 0;
-	if (!read(fd, buff, BUFF_SIZE_FILLIT))
+	if (!read(fd, buff, BUFF_SIZE))
 		return (NULL);
 	i[0] = 0;
 	i[2] = 0;

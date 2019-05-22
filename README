@@ -1,15 +1,11 @@
 Questions & To do
 -----------------
-* Why sqrt_sup(block_num * 4) ? for identify dim of **output !!! So can I use other method of this identification ???
-* change 1 => 
-	int	recursion(t_point **minos, char **output, int i, int j) -> recursion -> ft_solution
+* Why ft_dim(block_num * 4) ? for identify dim of **output !!! So can I use other method of this identification ???
+
 * revision de partie position -> how identidy t_point **minos ?
-* remove libft if is possible
-* change 2 => in all solve part fonctions params
-	(*minos, output, i, j) -> (char **output, t_point **minos, i, j)
-* What's the difference between **minos & *minos in solve ft_ params
-* change 3 => je ss pas wach nkhdem b a o b ola i o j, car kan9lab dok i o j o x o y !!! wa333 
-	int a, int b -> int i, int j
+
+* What's the difference between **minos & *minos in solve ft_ params ?
+
 * reviser la 2eme partie de la ft_ if_safe +++
 
 
@@ -24,65 +20,89 @@ Planning
 	void	free_output(char **output, int dim) 	-> OK
 	int	ft_dim(int dim) 			-> OK but question
 
-* Solve				=> 21/05/2019 to ??/05/2019 => NOK
-	int	is_safe(char **output, t_point *minos, int a, int b) 		-> NOK -
-	void	place_minos(char **output, t_point *minos, int i, int j)	-> NOK -
-	void	remove_minos(char **output, t_point *minos)			-> NOK
-	int	recursion(t_point **minos, char **output, int i, int j)		-> NOK -
-	void	fillit_solve(t_point **minos, char **output, int dim)		-> NOK -
+* Solve				=> 21/05/2019 to 22/05/2019 => OK
+	int	is_safe(char **output, t_point *minos, int a, int b) 		-> OK
+	void	place_minos(char **output, t_point *minos, int i, int j)	-> OK
+	void	remove_minos(char **output, t_point *minos)			-> OK
+	int	recursion(t_point **minos, char **output, int i, int j)		-> OK
+	void	fillit_solve(t_point **minos, char **output, int dim)		-> OK
 
-Fonctions
----------
-void			error(char *av, int *rcount);
-{
-	int				ft_max_min(int fd, int *rcount);
-	{
-		check nbr of blocks => (count < 1 || count > 26)
-		int				ft_check(int fd, int *count_b); -> NULL
-		{
-			check validity chars of block => ('.','#','\n')
-		}
-	}
-	int				ft_read(int fd);
-	{
-		int				ft_validate_tetris(char **tet, int *pound); -> NULL
-		{
-			check validity of titros => count relations => (pound > 4) && (count != 6 && count != 8) -> return (0)
-		}
-		char			**ft_read_tetriminos(char *buff); -> NULL
-		{
-			read titros -> char **block
-		}
-	}
-}
+* norminette
+* comments
+* remove extar files
+* check headers & includes
+* push
 
-t_point			**ft_coord(int fd, int *rcount);
-{
-	char			**ft_read_block(int fd);
-	{
-		NULL
-	}
-	void			minos_coord(char **block, t_point **coord, int *count);
-	{
-		NULL
-	}
-}
 
-int				sqrt_sup(int n);
-{
-	NULL
-}
+Test with 42filechecker
+-----------------------
+--- begin of invalid test ---
+invalid test 0 : ok
+invalid test 1 : ok
+invalid test 2 : ok
+invalid test 3 : ok
+invalid test 4 : ok
+invalid test 5 : ok
+invalid test 6 : ok
+invalid test 7 : ok
+invalid test 8 : ok
+invalid test 9 : ok
+invalid test 10 : ok
+invalid test 11 : ok
+invalid test 12 : ok
+invalid test 13 : ok
+invalid test 14 : ok
+invalid test 15 : ok
+invalid test 16 : ok
+invalid test 17 : ok
+invalid test 18 : ok
+invalid test 19 : ok
+invalid test 20 : ok
+invalid test 21 : ok
+invalid test 22 : ok
+invalid test 23 : ok
+invalid test 24 : ok
+invalid test 25 : ok
+--- end of invalid test ---
+invalid test succeed, 26 / 26
+--- begin of valid test ---
+valid test 0 : ok
+valid test 1 : ok
+valid test 2 : ok
+valid test 3 : ok
+valid test 4 : ok
+valid test 5 : ok
+valid test 6 : ok
+valid test 7 : ok
+valid test 8 : ok
+valid test 9 : ok
+valid test 10 : ok
+valid test 11 : ok
+valid test 12 : ok
+valid test 13 : ok
+valid test 14 : ok
+valid test 15 : ok
+valid test 16 : ok
+valid test 17 : ok
+valid test 18 : ok
+valid test 19 : ok
+--- end of valid test ---
+valid test succeed, 20 / 20
+BONUS : 
+AA
+AA
 
-void			fillit_solve(t_point **coord, char **grid, int dim);
-{
-	int				recursion(t_point **coord, char **grid, int i, int j);
-	{
-		int				is_safe(char **grid, t_point *tetrisa, int a, int b); -> NULL
-		void			place_minos(char **grid, t_point *tetrisa, int i, int j); -> NULL
-		void			remove_minos(char **grid, t_point *tetrisa); -> NULL
-	}
-	void			free_grid(char **grid, int dim); -> NULL
-	char			**create_grid(int dim); -> NULL
-	void			print_grid(char	**grid); -> NULL
-}
+real	0m0.004s
+user	0m0.001s
+sys	0m0.001s
+AA..B
+.A.BB
+.ACCB
+...C.
+...C.
+
+real	0m0.004s
+user	0m0.001s
+sys	0m0.001s
+NOTE: 48/48
 

@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
-int			is_safe(char **output, t_point *minos, int a, int b)
+int			is_safe(char **output, t_point *minos, int i, int j)
 {
 	int		index;
 	int		dim;
@@ -22,14 +21,14 @@ int			is_safe(char **output, t_point *minos, int a, int b)
 	while (output[0][dim])
 		dim++;
 	index = 1;
-	if (output[a][b] != '.')
+	if (output[i][j] != '.')
 		return (0);
 	while (index < 4)
 	{
-		if ((minos[index].x + b) >= 0 && (minos[index].x + b) < dim
-				&& (minos[index].y + a) < dim)
+		if ((minos[index].x + j) >= 0 && (minos[index].x + j) < dim
+				&& (minos[index].y + i) < dim)
 		{
-			if (output[minos[index].y + a][minos[index].x + b] != '.')
+			if (output[minos[index].y + i][minos[index].x + j] != '.')
 				return (0);
 		}
 		else
@@ -79,7 +78,7 @@ void		remove_minos(char **output, t_point *minos)
 	}
 }
 
-int			recursion(t_point **minos, char **output, int i, int j)
+int			ft_solution(char **output, t_point **minos, int i, int j)
 {
 	if (!*minos)
 		return (1);
@@ -90,7 +89,7 @@ int			recursion(t_point **minos, char **output, int i, int j)
 			if (is_safe(output, *minos, i, j) == 1)
 			{
 				place_minos(output, *minos, i, j);
-				if (recursion(minos + 1, output, 0, 0) == 1)
+				if (ft_solution(output, minos + 1, 0, 0) == 1)
 					return (1);
 				else
 					remove_minos(output, *minos);
@@ -103,12 +102,12 @@ int			recursion(t_point **minos, char **output, int i, int j)
 	return (0);
 }
 
-void		fillit_solve(t_point **minos, char **output, int dim)
+void		fillit_solve(char **output, t_point **minos, int dim)
 {
 	int		l;
 
 	l = 0;
-	while (!(recursion(minos, output, 0, 0)))
+	while (!(ft_solution(output, minos, 0, 0)))
 	{
 		free_output(output, dim);
 		l++;

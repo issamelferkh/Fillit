@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 int		ft_check_block_valid(int fd, int *block_num) 
 {
-	char buff[BUFF_SIZE_FILLIT + 1];
+	char buff[BUFF_SIZE + 1];
 	int r;
 	int i;
-	while ((r = read(fd, buff, BUFF_SIZE_FILLIT)) > 0)
+	while ((r = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[r] = '\0';
 		i = 0;
@@ -112,12 +111,12 @@ char		**ft_read_tetro(char *buff) // read buff and stock it in **tetro
 
 int			ft_read_valid_tetro(int fd) // valid nbr of # and relations => for valid a tetro
 {
-	char	buff[BUFF_SIZE_FILLIT];
+	char	buff[BUFF_SIZE];
 	int		relation; // nbr relation
 	int		sharp; // nbr of #
 
 	relation = 0;
-	while (read(fd, buff, BUFF_SIZE_FILLIT) > 0) // why = 0 ! && why not buff[r] = '\0'
+	while (read(fd, buff, BUFF_SIZE) > 0) // why = 0 ! && why not buff[r] = '\0'
 	{
 		sharp = 0;
 		relation = ft_valid_tetro(ft_read_tetro(buff), &sharp);
