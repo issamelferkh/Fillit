@@ -6,20 +6,20 @@
 /*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 00:28:41 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/18 00:28:44 by iel-ferk         ###   ########.fr       */
+/*   Updated: 2019/06/03 03:52:05 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_putchar(char c)
+void		ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+void		ft_putstr(char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (str[i])
@@ -29,18 +29,17 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	ft_check_file(char *av, int *block_num)
+void		ft_check_file(char *av, int *block_num)
 {
-	int fd;
+	int		fd;
 
 	if ((fd = open(av, O_RDONLY)) == -1 || !ft_check_block_num(fd, block_num))
 	{
 		ft_putstr("error\n");
-		exit(-1); // why -1 && check if au
+		exit(-1);
 	}
 	close(fd);
-	
-	if ((fd = open(av, O_RDONLY)) == -1 || !ft_read_valid_tetro(fd)) 
+	if ((fd = open(av, O_RDONLY)) == -1 || !ft_read_valid_tetro(fd))
 	{
 		ft_putstr("error\n");
 		exit(-1);
@@ -48,10 +47,10 @@ void	ft_check_file(char *av, int *block_num)
 	close(fd);
 }
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	int fd;
-	int block_num;
+	int		fd;
+	int		block_num;
 	char	**output;
 	t_point	**minos;
 

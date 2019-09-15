@@ -6,17 +6,17 @@
 /*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 00:22:42 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/21 00:22:45 by iel-ferk         ###   ########.fr       */
+/*   Updated: 2019/06/03 03:51:54 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**create_output(int dim)
+char		**create_output(int dim)
 {
-	int 	i;
+	int		i;
 	int		j;
-	char 	**output;
+	char	**output;
 
 	i = 0;
 	j = 0;
@@ -35,11 +35,11 @@ char	**create_output(int dim)
 		output[i][j] = '\0';
 		i++;
 	}
-	output[i] = NULL; // wach darouri za3ma ? can I use 0 or \0 ? 
+	output[i] = NULL;
 	return (output);
 }
 
-void	print_output(char **output)
+void		print_output(char **output)
 {
 	int		i;
 
@@ -52,7 +52,7 @@ void	print_output(char **output)
 	}
 }
 
-void	free_output(char **output, int dim)
+void		free_output(char **output, int dim)
 {
 	int		i;
 
@@ -66,7 +66,7 @@ void	free_output(char **output, int dim)
 	output = NULL;
 }
 
-int		ft_dim(int dim)
+int			ft_dim(int dim)
 {
 	int		i;
 

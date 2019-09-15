@@ -6,7 +6,7 @@
 /*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 00:26:48 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/18 00:29:00 by iel-ferk         ###   ########.fr       */
+/*   Updated: 2019/06/03 03:51:43 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,62 +42,32 @@ char		**ft_read_block(int fd)
 
 void		ft_position_block(char **block, t_point **position, int *count)
 {
-	int		i, j, flag, p;
-	int		X, Y;
+	int		i[4];
+	int		ref[2];
 
-	flag = 0;
-	j = -1;
-	p = 0;
-	while (block[++j])
+	i[2] = 0;
+	i[0] = -1;
+	i[3] = 0;
+	while (block[++i[0]])
 	{
-		i = -1;
-		while (block[j][++i])
+		i[1] = -1;
+		while (block[i[0]][++i[1]])
 		{
-			if (block[j][i] == '#' && flag == 0)
+			if (block[i[0]][i[1]] == '#' && i[2] == 0)
 			{
-				flag = 1;
-				Y = j;
-				X = i;
+				i[2] = 1;
+				ref[0] = i[0];
+				ref[1] = i[1];
 			}
-			if (block[j][i] == '#')
+			if (block[i[0]][i[1]] == '#')
 			{
-				position[(*count) - 1][p].x = i - X;
-				position[(*count) - 1][p].y = j - Y;
-				position[(*count) - 1][p].index = (*count) - 1;
-				p++;
+				position[(*count) - 1][i[3]].x = i[1] - ref[1];
+				position[(*count) - 1][i[3]].y = i[0] - ref[0];
+				position[(*count) - 1][i[3]++].index = (*count) - 1;
 			}
 		}
 	}
 }
-
-// void		ft_position_block(char **block, t_point **position, int *count)
-// {
-// 	int		i[4];
-// 	int		ref[2];
-
-// 	i[2] = 0;
-// 	i[0] = -1;
-// 	i[3] = 0;
-// 	while (block[++i[0]])
-// 	{
-// 		i[1] = -1;
-// 		while (block[i[0]][++i[1]])
-// 		{
-// 			if (block[i[0]][i[1]] == '#' && i[2] == 0)
-// 			{
-// 				i[2] = 1;
-// 				ref[0] = i[0];
-// 				ref[1] = i[1];
-// 			}
-// 			if (block[i[0]][i[1]] == '#')
-// 			{
-// 				position[(*count) - 1][i[3]].x = i[1] - ref[1];
-// 				position[(*count) - 1][i[3]].y = i[0] - ref[0];
-// 				position[(*count) - 1][i[3]++].index = (*count) - 1;
-// 			}
-// 		}
-// 	}   
-// }
 
 t_point		**ft_position(int fd, int *block_num)
 {

@@ -6,17 +6,16 @@
 /*   By: iel-ferk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 00:26:26 by iel-ferk          #+#    #+#             */
-/*   Updated: 2019/05/21 00:26:28 by iel-ferk         ###   ########.fr       */
+/*   Updated: 2019/06/03 03:52:35 by iel-ferk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # define BUFF_SIZE 20
-# include <unistd.h> // I think is in libft.h !!!
-# include <stdlib.h> // I think is in libft.h !!!
-# include <stdio.h> // I think is in libft.h !!!
-# include <fcntl.h> // I think is in libft.h !!!
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct	s_point
 {
@@ -45,6 +44,5 @@ void			remove_minos(char **output, t_point *minos);
 void			place_minos(char **output, t_point *minos, int i, int j);
 int				ft_solution(char **output, t_point **minos, int i, int j);
 void			fillit_solve(char **output, t_point **minos, int dim);
-
 
 #endif
