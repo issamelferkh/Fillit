@@ -1,108 +1,19 @@
-Questions & To do
------------------
-* Why ft_dim(block_num * 4) ? for identify dim of **output !!! So can I use other method of this identification ???
+# Fillit
 
-* revision de partie position -> how identidy t_point **minos ?
+## Description
+Fillit is a project which involves discovering and getting acquainted with a recurrent problem in programming: 
+the search of an optimal solution among a very large number of possibilities in a reasonable amount of time. 
+In this project, I will arrange Tetriminos among them and determine the smallest square that can fit all of them.
 
-* What's the difference between **minos & *minos in solve ft_ params ?
+## Objectives
+- Algorithmie basique 
+- Entrées/sorties 
 
-* reviser la 2eme partie de la ft_ if_safe +++
+## Skills
+- Rigor 
+- Unix 
+- Algorithms & AI 
+- Group & interpersonal
 
-
-
-Planning
---------
-* Check_file (File Validation)	=> 15/05/2019 to 16/05/2019 => OK
-* Position (data structure)	=> 17/05/2019 to 19/05/2019 => OK
-* Output (**output manager)	=> 20/05/2019 to 21/05/2019 => OK
-	char	**create_output(int dim) 		-> OK
-	void	print_output(char **output) 		-> OK
-	void	free_output(char **output, int dim) 	-> OK
-	int	ft_dim(int dim) 			-> OK but question
-
-* Solve				=> 21/05/2019 to 22/05/2019 => OK
-	int	is_safe(char **output, t_point *minos, int a, int b) 		-> OK
-	void	place_minos(char **output, t_point *minos, int i, int j)	-> OK
-	void	remove_minos(char **output, t_point *minos)			-> OK
-	int	recursion(t_point **minos, char **output, int i, int j)		-> OK
-	void	fillit_solve(t_point **minos, char **output, int dim)		-> OK
-
-* norminette
-* comments
-* remove extar files
-* check headers & includes
-* push
-
-
-Test with 42filechecker
------------------------
---- begin of invalid test ---
-invalid test 0 : ok
-invalid test 1 : ok
-invalid test 2 : ok
-invalid test 3 : ok
-invalid test 4 : ok
-invalid test 5 : ok
-invalid test 6 : ok
-invalid test 7 : ok
-invalid test 8 : ok
-invalid test 9 : ok
-invalid test 10 : ok
-invalid test 11 : ok
-invalid test 12 : ok
-invalid test 13 : ok
-invalid test 14 : ok
-invalid test 15 : ok
-invalid test 16 : ok
-invalid test 17 : ok
-invalid test 18 : ok
-invalid test 19 : ok
-invalid test 20 : ok
-invalid test 21 : ok
-invalid test 22 : ok
-invalid test 23 : ok
-invalid test 24 : ok
-invalid test 25 : ok
---- end of invalid test ---
-invalid test succeed, 26 / 26
---- begin of valid test ---
-valid test 0 : ok
-valid test 1 : ok
-valid test 2 : ok
-valid test 3 : ok
-valid test 4 : ok
-valid test 5 : ok
-valid test 6 : ok
-valid test 7 : ok
-valid test 8 : ok
-valid test 9 : ok
-valid test 10 : ok
-valid test 11 : ok
-valid test 12 : ok
-valid test 13 : ok
-valid test 14 : ok
-valid test 15 : ok
-valid test 16 : ok
-valid test 17 : ok
-valid test 18 : ok
-valid test 19 : ok
---- end of valid test ---
-valid test succeed, 20 / 20
-BONUS : 
-AA
-AA
-
-real	0m0.004s
-user	0m0.001s
-sys	0m0.001s
-AA..B
-.A.BB
-.ACCB
-...C.
-...C.
-
-real	0m0.004s
-user	0m0.001s
-sys	0m0.001s
-NOTE: 48/48
-
+### EVALUATED BY MOULINETTE: 100%
+edge_tests: OK | rand_tests: OK
